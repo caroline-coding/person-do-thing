@@ -102,8 +102,8 @@
     font-weight: 600;
     margin-bottom: 1.5rem;
   }
-  .groups { column-count: 2; column-gap: 1.75rem; }
-  .group { break-inside: avoid; }
+  .groups { display: flex; gap: 1.75rem; align-items: flex-start; }
+  .col { flex: 1; min-width: 0; }
   .group:not(:last-child) { margin-bottom: 1.25rem; }
   .group-title {
     font-size: 0.7rem;
@@ -159,7 +159,7 @@
 
     /* Bigger, easier-to-read allowed-words panel: three columns */
     .allowed h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
-    .groups { column-count: 3; column-gap: 2.5rem; }
+    .groups { gap: 2.5rem; }
     .group:not(:last-child) { margin-bottom: 1.5rem; }
     .group-title { font-size: 0.78rem; margin-bottom: 0.5rem; }
     .word-line { font-size: 1.05rem; padding: 0.32rem 0; }
@@ -179,7 +179,7 @@
     .btn-primary { padding: 0.8rem 1rem; }
     .allowed { padding: clamp(1rem, 2dvh, 1.4rem); }
     .allowed h2 { margin-bottom: clamp(0.65rem, 1.6dvh, 1.1rem); }
-    .groups { column-count: 3; column-gap: 0.85rem; }
+    .groups { gap: 0.85rem; }
     .group:not(:last-child) { margin-bottom: clamp(0.7rem, 1.6dvh, 1.1rem); }
     .group-title { margin-bottom: 0.3rem; }
     .word-line { font-size: 0.88rem; padding: clamp(0.12rem, 0.5dvh, 0.25rem) 0; }
@@ -221,14 +221,21 @@
     Helpers: ["Before", "More", "Other", "In", "Up", "Same", "Again", "And", "But", "Yes", "No"]
   };
 
-  // Render the allowed-words panel
+  // Render the allowed-words panel as three explicit columns so the
+  // category titles line up across the top.
   const groupsEl = document.getElementById("groups");
-  for (const [title, words] of Object.entries(ALLOWED)) {
-    const g = document.createElement("div");
-    g.className = "group";
-    g.innerHTML = `<div class="group-title">${title}</div>` +
-      words.map(w => `<div class="word-line">${w}</div>`).join("");
-    groupsEl.appendChild(g);
+  const COLUMNS = [["Nouns", "Adjectives"], ["Verbs"], ["Helpers"]];
+  for (const colTitles of COLUMNS) {
+    const col = document.createElement("div");
+    col.className = "col";
+    for (const title of colTitles) {
+      const g = document.createElement("div");
+      g.className = "group";
+      g.innerHTML = `<div class="group-title">${title}</div>` +
+        ALLOWED[title].map(w => `<div class="word-line">${w}</div>`).join("");
+      col.appendChild(g);
+    }
+    groupsEl.appendChild(col);
   }
 
   const wordEl = document.getElementById("word");
