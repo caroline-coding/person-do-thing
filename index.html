@@ -102,27 +102,24 @@
     font-weight: 600;
     margin-bottom: 1.5rem;
   }
-  .groups {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1.5rem;
-  }
+  .groups { column-count: 2; column-gap: 1.75rem; }
+  .group { break-inside: avoid; }
+  .group:not(:last-child) { margin-bottom: 1.25rem; }
   .group-title {
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--sage);
     font-weight: 600;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
   }
-  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .chip {
-    background: var(--bg);
-    border: 1px solid var(--line-2);
-    border-radius: 0.4rem;
-    padding: 0.2rem 0.6rem;
-    font-size: 0.88rem;
+  .word-line {
+    padding: 0.25rem 0;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    border-bottom: 1px solid var(--line);
   }
+  .word-line:last-child { border-bottom: none; }
 
   footer {
     margin-top: 2rem;
@@ -160,14 +157,12 @@
     .allowed { grid-area: allowed; padding: 2rem 2.25rem; }
     footer   { grid-area: footer; }
 
-    /* Bigger, easier-to-read allowed-words panel: two wide columns */
+    /* Bigger, easier-to-read allowed-words panel: three columns */
     .allowed h2 { font-size: 1.25rem; margin-bottom: 1.5rem; }
-    .groups {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.75rem 2.5rem;
-    }
-    .group-title { font-size: 0.78rem; margin-bottom: 0.75rem; }
-    .chip { font-size: 1rem; padding: 0.3rem 0.7rem; }
+    .groups { column-count: 3; column-gap: 2.5rem; }
+    .group:not(:last-child) { margin-bottom: 1.5rem; }
+    .group-title { font-size: 0.78rem; margin-bottom: 0.5rem; }
+    .word-line { font-size: 1.05rem; padding: 0.32rem 0; }
   }
 
   /* --- Mobile: vertical spacing auto-fits the screen height (clamp + dvh)
@@ -184,10 +179,10 @@
     .btn-primary { padding: 0.8rem 1rem; }
     .allowed { padding: clamp(1rem, 2dvh, 1.4rem); }
     .allowed h2 { margin-bottom: clamp(0.65rem, 1.6dvh, 1.1rem); }
-    .groups { gap: clamp(0.7rem, 1.7dvh, 1.2rem); }
-    .group-title { margin-bottom: 0.45rem; }
-    .chips { gap: 0.32rem; }
-    .chip { padding: 0.18rem 0.52rem; font-size: 0.84rem; }
+    .groups { column-gap: 1.25rem; }
+    .group:not(:last-child) { margin-bottom: clamp(0.7rem, 1.6dvh, 1.1rem); }
+    .group-title { margin-bottom: 0.3rem; }
+    .word-line { font-size: 0.88rem; padding: clamp(0.12rem, 0.5dvh, 0.25rem) 0; }
     footer { display: none; }
   }
 </style>
@@ -232,7 +227,7 @@
     const g = document.createElement("div");
     g.className = "group";
     g.innerHTML = `<div class="group-title">${title}</div>` +
-      `<div class="chips">${words.map(w => `<span class="chip">${w}</span>`).join("")}</div>`;
+      words.map(w => `<div class="word-line">${w}</div>`).join("");
     groupsEl.appendChild(g);
   }
 
