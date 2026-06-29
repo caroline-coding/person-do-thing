@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Person Do Thing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF9F7;
+    --ink: #1a1a1a;
+    --muted: #6b7280;       /* gray-500 */
+    --faint: #9ca3af;       /* gray-400 */
+    --line: #f3f4f6;        /* gray-100 */
+    --line-2: #e5e7eb;      /* gray-200 */
+    --sage: #6B8E6B;
+    --sage-dark: #5A7A5A;
+    --card-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 3.5rem 1.5rem;
+    min-height: 100vh;
+  }
+  main { max-width: 640px; margin: 0 auto; }
+
+  header { margin-bottom: 2rem; }
+  h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .subtitle { color: var(--muted); font-size: 1rem; }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    box-shadow: var(--card-shadow);
+  }
+
+  /* --- Target word --- */
+  .target {
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .target .label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--faint);
+    margin-bottom: 0.75rem;
+  }
+  .target .word {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    min-height: 1.15em;
+    word-break: break-word;
+  }
+  .target .word.placeholder {
+    color: var(--faint);
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+
+  /* --- Controls --- */
+  .controls {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0 0 2.5rem;
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .btn-primary {
+    flex: 1;
+    background: var(--sage);
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .btn-primary:hover { background: var(--sage-dark); }
+  .btn-ghost {
+    background: #fff;
+    color: var(--muted);
+    border: 1px solid var(--line-2);
+    border-radius: 0.5rem;
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+
+  /* --- Allowed words --- */
+  .allowed { padding: 1.75rem; }
+  .allowed h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .allowed .sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+  }
+  .group-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--sage);
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    background: var(--bg);
+    border: 1px solid var(--line-2);
+    border-radius: 0.4rem;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.88rem;
+  }
+
+  footer {
+    margin-top: 2rem;
+    color: var(--faint);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  kbd {
+    background: #fff;
+    border: 1px solid var(--line-2);
+    border-bottom-width: 2px;
+    border-radius: 0.35rem;
+    padding: 0.05rem 0.4rem;
+    font-size: 0.78rem;
+    font-family: inherit;
+  }
+
+  /* --- Mobile --- */
+  @media (max-width: 480px) {
+    body { padding: 2rem 1rem; }
+    h1 { font-size: 1.85rem; }
+    .subtitle { font-size: 0.95rem; }
+    .target { padding: 2.25rem 1.25rem; }
+    .target .word { font-size: 2rem; }
+    .target .word.placeholder { font-size: 1.25rem; }
+    .controls { margin-bottom: 2rem; }
+    .btn-primary, .btn-ghost { padding: 0.8rem 1rem; }
+    .allowed { padding: 1.25rem; }
+    .groups { gap: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Person Do Thing</h1>
+    <p class="subtitle">Clue the secret word using <strong>only</strong> the allowed words below. No gestures, no spelling — just the small list.</p>
+  </header>
+
+  <div class="card target">
+    <div class="label">Your word to clue</div>
+    <div id="word" class="word placeholder">Press the button to start</div>
+  </div>
+
+  <div class="controls">
+    <button id="newWord" class="btn-primary">New word</button>
+    <button id="reset" class="btn-ghost" style="display:none">Reset</button>
+  </div>
+
+  <section class="card allowed">
+    <h2>Allowed words</h2>
+    <p class="sub">These are the <strong>only</strong> words you may use to give your clue.</p>
+    <div id="groups" class="groups"></div>
+  </section>
+
+  <footer>
+    Press <kbd>Space</kbd> or <kbd>Enter</kbd> for a new word &nbsp;·&nbsp; <span id="count"></span> words in the bank
+  </footer>
+</main>
+
+<script src="words.js"></script>
+<script>
+  const ALLOWED = {
+    Nouns: ["Person", "Place", "Thing"],
+    Adjectives: ["Big", "Far", "Fast", "Good", "Hard", "Hot", "Many", "Real"],
+    Verbs: ["Do", "Feel", "Go", "Have", "Like", "Make", "Say", "See", "Think", "Use", "Want"],
+    Helpers: ["Before", "More", "Other", "In", "Up", "Same", "Again", "And", "But", "Yes", "No"]
+  };
+
+  // Render the allowed-words panel
+  const groupsEl = document.getElementById("groups");
+  for (const [title, words] of Object.entries(ALLOWED)) {
+    const g = document.createElement("div");
+    g.className = "group";
+    g.innerHTML = `<div class="group-title">${title}</div>` +
+      `<div class="chips">${words.map(w => `<span class="chip">${w}</span>`).join("")}</div>`;
+    groupsEl.appendChild(g);
+  }
+
+  const wordEl = document.getElementById("word");
+  const newBtn = document.getElementById("newWord");
+  const resetBtn = document.getElementById("reset");
+
+  // Dedupe case-insensitively (keep first spelling) so the count is honest
+  // and the no-repeat shuffle can't surface the same target twice.
+  const BANK = (() => {
+    const seen = new Set(), out = [];
+    for (const w of WORD_BANK) {
+      const k = w.toLowerCase();
+      if (!seen.has(k)) { seen.add(k); out.push(w); }
+    }
+    return out;
+  })();
+  document.getElementById("count").textContent = BANK.length;
+
+  // Avoid immediate repeats by shuffling through the bank
+  let queue = [];
+  function refill() {
+    queue = [...BANK];
+    for (let i = queue.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [queue[i], queue[j]] = [queue[j], queue[i]];
+    }
+  }
+
+  function nextWord() {
+    if (queue.length === 0) refill();
+    wordEl.textContent = queue.pop();
+    wordEl.classList.remove("placeholder");
+    resetBtn.style.display = "inline-block";
+    newBtn.textContent = "Next word";
+  }
+
+  function reset() {
+    wordEl.textContent = "Press the button to start";
+    wordEl.classList.add("placeholder");
+    resetBtn.style.display = "none";
+    newBtn.textContent = "New word";
+  }
+
+  newBtn.addEventListener("click", nextWord);
+  resetBtn.addEventListener("click", reset);
+  document.addEventListener("keydown", (e) => {
+    if (e.code === "Space" || e.code === "Enter") {
+      e.preventDefault();
+      nextWord();
+    }
+  });
+</script>
+</body>
+</html>
