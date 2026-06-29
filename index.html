@@ -170,23 +170,24 @@
     .chip { font-size: 1rem; padding: 0.3rem 0.7rem; }
   }
 
-  /* --- Mobile: keep the word + all allowed words on one screen --- */
+  /* --- Mobile: vertical spacing auto-fits the screen height (clamp + dvh)
+         so the word + all allowed words stay on one screen across phones --- */
   @media (max-width: 480px) {
-    body { padding: 1.5rem 1rem; }
-    header { margin-bottom: 1.1rem; }
-    h1 { font-size: 1.6rem; }
-    .target { padding: 1.6rem 1.25rem; margin-bottom: 1rem; }
-    .target .label { margin-bottom: 0.5rem; }
-    .target .word { font-size: 1.9rem; }
+    body { padding: clamp(0.75rem, 2dvh, 1.5rem) 1rem; }
+    header { margin-bottom: clamp(0.55rem, 1.5dvh, 1.1rem); }
+    h1 { font-size: 1.55rem; }
+    .target { padding: clamp(1rem, 2.6dvh, 1.6rem) 1.25rem; margin-bottom: clamp(0.55rem, 1.4dvh, 1rem); }
+    .target .label { margin-bottom: 0.4rem; }
+    .target .word { font-size: 1.8rem; }
     .target .word.placeholder { font-size: 1.2rem; }
-    .controls { margin-bottom: 1.25rem; }
-    .btn-primary { padding: 0.85rem 1rem; }
-    .allowed { padding: 1.4rem; }
-    .allowed h2 { margin-bottom: 1.1rem; }
-    .groups { gap: 1.2rem; }
-    .group-title { margin-bottom: 0.5rem; }
-    .chips { gap: 0.35rem; }
-    .chip { padding: 0.2rem 0.55rem; font-size: 0.85rem; }
+    .controls { margin-bottom: clamp(0.65rem, 1.8dvh, 1.25rem); }
+    .btn-primary { padding: 0.8rem 1rem; }
+    .allowed { padding: clamp(1rem, 2dvh, 1.4rem); }
+    .allowed h2 { margin-bottom: clamp(0.65rem, 1.6dvh, 1.1rem); }
+    .groups { gap: clamp(0.7rem, 1.7dvh, 1.2rem); }
+    .group-title { margin-bottom: 0.45rem; }
+    .chips { gap: 0.32rem; }
+    .chip { padding: 0.18rem 0.52rem; font-size: 0.84rem; }
     footer { display: none; }
   }
 </style>
