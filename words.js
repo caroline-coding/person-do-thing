@@ -1,6 +1,8 @@
 // Word bank for "Person Do Thing"
-// ~1000 targets to clue, across difficulty levels.
-// Includes everyday objects, places, concepts, plus famous movies/songs/etc.
+// ~1850 targets to clue, across difficulty levels. Favors distinctive,
+// clue-able concepts (function/story/unique trait) over arbitrary members
+// of a big category. Includes everyday objects, places, concepts, plus
+// famous movies, songs, people, and landmarks.
 
 const WORD_BANK = [
   // ---- Everyday objects / household ----
@@ -19,9 +21,9 @@ const WORD_BANK = [
   "bread", "butter", "cheese", "egg", "milk", "yogurt", "cream", "sugar", "salt", "pepper",
   "flour", "rice", "pasta", "noodle", "soup", "salad", "sandwich", "pizza", "burger", "hotdog",
   "taco", "burrito", "sushi", "dumpling", "pancake", "waffle", "cereal", "oatmeal", "honey", "jam",
-  "peanut", "almond", "walnut", "cashew", "popcorn", "chip", "cookie", "cake", "pie", "donut",
+  "peanut", "popcorn", "chip", "cookie", "cake", "pie", "donut",
   "muffin", "brownie", "candy", "chocolate", "icecream", "pudding", "jelly", "marshmallow", "pretzel", "cracker",
-  "apple", "banana", "orange", "grape", "strawberry", "blueberry", "raspberry", "watermelon", "pineapple", "mango",
+  "apple", "banana", "orange", "grape", "strawberry", "watermelon", "pineapple", "mango",
   "peach", "pear", "plum", "cherry", "lemon", "lime", "coconut", "kiwi", "avocado", "tomato",
   "potato", "carrot", "onion", "garlic", "pepper", "cucumber", "lettuce", "spinach", "broccoli", "corn",
   "mushroom", "pumpkin", "bean", "pea", "celery", "cabbage", "radish", "beet", "ginger", "chili",
@@ -32,13 +34,13 @@ const WORD_BANK = [
   "dog", "cat", "horse", "cow", "pig", "sheep", "goat", "chicken", "duck", "goose",
   "rabbit", "mouse", "rat", "hamster", "squirrel", "fox", "wolf", "bear", "deer", "moose",
   "lion", "tiger", "leopard", "cheetah", "elephant", "giraffe", "zebra", "hippo", "rhino", "monkey",
-  "gorilla", "chimpanzee", "kangaroo", "koala", "panda", "sloth", "raccoon", "skunk", "beaver", "otter",
-  "bat", "owl", "eagle", "hawk", "falcon", "parrot", "penguin", "flamingo", "peacock", "ostrich",
-  "snake", "lizard", "crocodile", "alligator", "turtle", "tortoise", "frog", "toad", "salamander", "chameleon",
+  "gorilla", "chimpanzee", "kangaroo", "koala", "panda", "sloth", "raccoon", "skunk", "beaver",
+  "bat", "owl", "eagle", "parrot", "penguin", "flamingo", "peacock", "ostrich",
+  "snake", "lizard", "crocodile", "alligator", "turtle", "tortoise", "frog", "chameleon",
   "shark", "whale", "dolphin", "octopus", "squid", "jellyfish", "crab", "lobster", "shrimp", "starfish",
-  "fish", "seahorse", "stingray", "eel", "clam", "oyster", "snail", "slug", "worm", "spider",
-  "ant", "bee", "wasp", "butterfly", "moth", "ladybug", "beetle", "grasshopper", "cricket", "dragonfly",
-  "mosquito", "fly", "cockroach", "scorpion", "centipede", "caterpillar", "firefly", "termite", "flea", "tick",
+  "fish", "seahorse", "stingray", "eel", "oyster", "snail", "worm", "spider",
+  "ant", "bee", "wasp", "butterfly", "ladybug", "grasshopper", "cricket", "dragonfly",
+  "mosquito", "fly", "cockroach", "scorpion", "caterpillar", "firefly",
 
   // ---- Body & health ----
   "head", "hair", "face", "eye", "ear", "nose", "mouth", "tooth", "tongue", "lip",
@@ -187,7 +189,109 @@ const WORD_BANK = [
   "honeycomb", "spiderweb", "cocoon", "beehive", "anthill", "birdnest", "burrow", "den", "hive", "nest",
   "whirlpool", "tide", "wave", "current", "ripple", "splash", "puddle", "raindrop", "snowflake", "icicle",
   "mirage", "oasis", "quicksand", "dune", "tundra", "savanna", "rainforest", "wetland", "coral reef", "iceberg",
-  "compass rose", "treasure map", "message in a bottle", "shipwreck", "lighthouse", "anchor", "harbor", "pier", "dock", "buoy"
+  "compass rose", "treasure map", "message in a bottle", "shipwreck", "lighthouse", "anchor", "harbor", "pier", "dock", "buoy",
+
+  // ====================================================================
+  //  Distinctive additions — words clue-able by function, story, or a
+  //  unique trait (favoring proper nouns and one-of-a-kind concepts over
+  //  arbitrary members of a big category).
+  // ====================================================================
+
+  // ---- Life events & milestones ----
+  "honeymoon", "graduation", "retirement", "divorce", "proposal", "pregnancy", "adoption", "reunion", "sleepover", "babysitter",
+  "allowance", "curfew", "detention", "recess", "prom", "internship", "promotion", "deadline", "commute", "anniversary",
+  "first date", "blind date", "midlife crisis", "growth spurt", "bar mitzvah",
+
+  // ---- Feelings & states of mind ----
+  "nostalgia", "hangover", "insomnia", "epiphany", "willpower", "stage fright", "wanderlust", "serendipity", "vertigo", "adrenaline",
+  "instinct", "intuition", "conscience", "temptation", "procrastination", "optimism", "pessimism", "paranoia", "heartbreak", "gut feeling",
+  "butterflies", "homesick",
+
+  // ---- Natural phenomena ----
+  "geyser", "aurora", "eclipse", "tsunami", "sinkhole", "stalactite", "magma", "frostbite", "sunburn", "monsoon",
+  "blizzard", "whirlwind", "heatwave", "shooting star", "full moon", "solar system", "milky way", "constellation", "black hole", "supernova",
+  "asteroid", "riptide", "undertow", "sunbeam",
+
+  // ---- Distinctive objects & gadgets ----
+  "boomerang", "slingshot", "catapult", "trampoline", "seesaw", "hammock", "treadmill", "parachute", "snorkel", "harpoon",
+  "lasso", "corkscrew", "mousetrap", "birdcage", "fishbowl", "terrarium", "totem pole", "dreamcatcher", "piñata", "marionette",
+  "jackhammer", "chainsaw", "lawnmower", "sprinkler", "watering can", "birdfeeder", "doorbell", "mailbox", "chimney", "fireplace",
+  "escalator", "elevator", "revolving door", "trapdoor", "drawbridge", "moat", "gargoyle", "fountain", "obelisk", "conveyor belt",
+
+  // ---- Iconic foods ----
+  "bagel", "croissant", "cupcake", "lollipop", "gingerbread", "cotton candy", "candy cane", "fortune cookie", "popsicle", "sundae",
+  "banana split", "churro", "nacho", "guacamole", "hummus", "kimchi", "ramen", "lasagna", "meatball", "omelette",
+  "bacon", "pickle", "caviar", "cheesecake", "gravy", "ketchup", "mustard", "syrup", "gumbo", "smores",
+  "jellybean", "gumball", "licorice", "birthday cake",
+
+  // ---- Distinctive animals & creatures ----
+  "unicorn", "dragon", "dinosaur", "mammoth", "dodo", "platypus", "narwhal", "porcupine", "hedgehog", "armadillo",
+  "anteater", "meerkat", "woodpecker", "hummingbird", "vulture", "swan", "pelican", "toucan", "walrus", "seal",
+  "manatee", "orca", "piranha", "pufferfish", "hammerhead", "swordfish", "tarantula", "mockingbird", "raven", "praying mantis",
+  "mongoose", "wombat",
+
+  // ---- Landmarks & geographic names ----
+  "Mount Fuji", "Amazon River", "Sahara Desert", "Bermuda Triangle", "North Pole", "South Pole", "Mount Vesuvius", "Loch Ness", "Area 51", "Route 66",
+  "Wall Street", "Broadway", "Las Vegas", "Disneyland", "Brooklyn Bridge", "Berlin Wall", "Machu Picchu", "Mount Kilimanjaro", "Yellowstone", "Death Valley",
+  "Silicon Valley", "Hoover Dam", "Panama Canal", "Suez Canal", "Great Barrier Reef", "Vatican", "Acropolis", "Atlantis",
+
+  // ---- Movies ----
+  "The Sound of Music", "Mary Poppins", "Willy Wonka", "Home Alone", "The Grinch", "Elf", "Pinocchio", "Peter Pan", "101 Dalmatians", "Cars",
+  "WALL-E", "Ratatouille", "Inside Out", "Coco", "Encanto", "Zootopia", "Despicable Me", "Minions", "Kung Fu Panda", "Madagascar",
+  "Ice Age", "The Incredibles", "Monsters Inc", "Brave", "Tangled", "The Jungle Book", "Top Gun", "Gone with the Wind", "Psycho", "The Shining",
+  "The Hunger Games", "Twilight", "Grease", "Jumanji", "Men in Black", "Cast Away", "Jurassic World", "La La Land", "The Sixth Sense", "Groundhog Day",
+
+  // ---- Songs ----
+  "Let It Go", "Baby Shark", "YMCA", "Macarena", "Gangnam Style", "I Will Survive", "Stayin' Alive", "Don't Stop Believin'", "Take On Me", "Africa",
+  "Wonderwall", "Twist and Shout", "Respect", "What a Wonderful World", "Somewhere Over the Rainbow", "Eye of the Tiger", "Purple Rain", "Shake It Off", "Bad Guy", "Someone Like You",
+  "Firework", "Roar", "Wannabe", "Mr. Brightside", "Sweet Home Alabama", "We Are the Champions", "Wrecking Ball", "Royals",
+
+  // ---- Famous people ----
+  "Albert Einstein", "Isaac Newton", "Charles Darwin", "Leonardo da Vinci", "William Shakespeare", "Mozart", "Beethoven", "Pablo Picasso", "Vincent van Gogh", "Abraham Lincoln",
+  "George Washington", "Napoleon", "Cleopatra", "Julius Caesar", "Gandhi", "Martin Luther King", "Nelson Mandela", "Mother Teresa", "Marie Curie", "Stephen Hawking",
+  "Thomas Edison", "Benjamin Franklin", "Christopher Columbus", "Amelia Earhart", "Neil Armstrong", "Elvis Presley", "Michael Jackson", "The Beatles", "Marilyn Monroe", "Oprah",
+  "Queen Elizabeth", "Galileo", "Joan of Arc", "Mark Twain",
+
+  // ---- Fictional characters & icons ----
+  "Santa Claus", "Easter Bunny", "Cupid", "Sherlock Holmes", "James Bond", "Mickey Mouse", "Bugs Bunny", "SpongeBob", "Pikachu", "Super Mario",
+  "Darth Vader", "Yoda", "Frankenstein", "Dracula", "Robin Hood", "Winnie the Pooh", "Scooby-Doo", "Snoopy", "Garfield", "Homer Simpson",
+  "Hulk", "Captain America", "Grim Reaper", "Bigfoot", "Humpty Dumpty", "Cookie Monster", "Kermit the Frog", "The Joker",
+
+  // ---- Toys, games & amusements ----
+  "Rubik's Cube", "Jenga", "Twister", "Scrabble", "Battleship", "Connect Four", "Monopoly", "Uno", "Sudoku", "Crossword",
+  "Frisbee", "Hula Hoop", "Pogo Stick", "Jump Rope", "Slinky", "Play-Doh", "Etch A Sketch", "Tetris", "Pac-Man", "Pinball",
+  "Foosball", "Air Hockey", "Ping Pong", "Dodgeball", "Whack-a-Mole", "Spinning Top", "Bumper Cars", "Roller Coaster",
+
+  // ---- Distinctive roles & characters ----
+  "ninja", "cowboy", "wizard", "witch", "vampire", "werewolf", "mermaid", "fairy", "genie", "superhero",
+  "spy", "detective", "lifeguard", "lumberjack", "blacksmith", "matador", "samurai", "viking", "caveman", "mummy",
+  "zombie", "scuba diver",
+
+  // ---- Holidays, events & eras ----
+  "St. Patrick's Day", "Hanukkah", "Diwali", "Ramadan", "Chinese New Year", "Cinco de Mayo", "Mardi Gras", "Oktoberfest", "Earth Day", "Leap Year",
+  "Friday the 13th", "Black Friday", "New Year's Eve", "Super Bowl", "World Cup", "Woodstock", "Gold Rush", "Moon Landing", "Big Bang",
+
+  // ---- Plants & nature ----
+  "venus flytrap", "mistletoe", "four-leaf clover", "poison ivy", "dandelion", "tumbleweed", "lily pad", "acorn", "pinecone", "seashell",
+  "seaweed", "toadstool", "thorn", "pollen", "nectar", "bonsai",
+
+  // ---- Body & health ----
+  "heartbeat", "blush", "shiver", "sweat", "dimple", "freckle", "cavity", "braces", "crutches", "cast",
+  "eyepatch", "tattoo", "piercing", "sunscreen", "wisdom tooth",
+
+  // ---- Idioms & personalities ----
+  "cold feet", "sweet tooth", "couch potato", "early bird", "night owl", "bookworm", "copycat", "underdog", "daredevil", "chatterbox",
+  "wild goose chase", "piece of cake", "party animal", "scaredy cat", "lovebird", "busybody",
+
+  // ---- Adventures & activities ----
+  "bungee jumping", "skydiving", "scuba diving", "paragliding", "ziplining", "rock climbing", "white water rafting", "horseback riding", "ice fishing", "arm wrestling",
+  "thumb war", "limbo", "tightrope", "trapeze", "snowball fight",
+
+  // ---- More distinctive objects & sights ----
+  "piggy bank", "treasure chest", "time capsule", "crystal ball", "magic wand", "wishing well", "lucky charm", "voodoo doll", "ouija board", "tarot card",
+  "magnifying glass", "grandfather clock", "cuckoo clock", "alarm clock", "snow globe", "jack-in-the-box", "jukebox", "vending machine", "photo booth", "ferris wheel",
+  "carousel", "gumball machine", "hot air balloon", "zeppelin", "disco ball", "lava lamp", "music box", "bubble wrap", "traffic light", "fire hydrant",
+  "manhole", "scoreboard", "billboard", "mannequin"
 ];
 
 // Expose for the app
