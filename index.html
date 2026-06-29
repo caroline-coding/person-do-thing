@@ -35,9 +35,7 @@
     font-size: 2.25rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    margin-bottom: 0.5rem;
   }
-  .subtitle { color: var(--muted); font-size: 1rem; }
 
   .card {
     background: #fff;
@@ -95,27 +93,12 @@
     font-weight: 600;
   }
   .btn-primary:hover { background: var(--sage-dark); }
-  .btn-ghost {
-    background: #fff;
-    color: var(--muted);
-    border: 1px solid var(--line-2);
-    border-radius: 0.5rem;
-    padding: 0.85rem 1.25rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-  }
-  .btn-ghost:hover { color: var(--ink); }
 
   /* --- Allowed words --- */
   .allowed { padding: 1.75rem; }
   .allowed h2 {
     font-size: 1.05rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-  .allowed .sub {
-    color: var(--muted);
-    font-size: 0.9rem;
     margin-bottom: 1.5rem;
   }
   .groups {
@@ -165,7 +148,7 @@
     .target .word { font-size: 2rem; }
     .target .word.placeholder { font-size: 1.25rem; }
     .controls { margin-bottom: 2rem; }
-    .btn-primary, .btn-ghost { padding: 0.8rem 1rem; }
+    .btn-primary { padding: 0.8rem 1rem; }
     .allowed { padding: 1.25rem; }
     .groups { gap: 1.25rem; }
   }
@@ -175,7 +158,6 @@
 <main>
   <header>
     <h1>Person Do Thing</h1>
-    <p class="subtitle">Clue the secret word using <strong>only</strong> the allowed words below. No gestures, no spelling — just the small list.</p>
   </header>
 
   <div class="card target">
@@ -185,12 +167,10 @@
 
   <div class="controls">
     <button id="newWord" class="btn-primary">New word</button>
-    <button id="reset" class="btn-ghost" style="display:none">Reset</button>
   </div>
 
   <section class="card allowed">
     <h2>Allowed words</h2>
-    <p class="sub">These are the <strong>only</strong> words you may use to give your clue.</p>
     <div id="groups" class="groups"></div>
   </section>
 
@@ -220,7 +200,6 @@
 
   const wordEl = document.getElementById("word");
   const newBtn = document.getElementById("newWord");
-  const resetBtn = document.getElementById("reset");
 
   // Dedupe case-insensitively (keep first spelling) so the count is honest
   // and the no-repeat shuffle can't surface the same target twice.
@@ -248,19 +227,10 @@
     if (queue.length === 0) refill();
     wordEl.textContent = queue.pop();
     wordEl.classList.remove("placeholder");
-    resetBtn.style.display = "inline-block";
     newBtn.textContent = "Next word";
   }
 
-  function reset() {
-    wordEl.textContent = "Press the button to start";
-    wordEl.classList.add("placeholder");
-    resetBtn.style.display = "none";
-    newBtn.textContent = "New word";
-  }
-
   newBtn.addEventListener("click", nextWord);
-  resetBtn.addEventListener("click", reset);
   document.addEventListener("keydown", (e) => {
     if (e.code === "Space" || e.code === "Enter") {
       e.preventDefault();
