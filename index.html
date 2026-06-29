@@ -139,6 +139,27 @@
     font-family: inherit;
   }
 
+  /* --- Wide screens: two columns so nothing needs scrolling --- */
+  @media (min-width: 760px) {
+    main {
+      max-width: 1080px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      grid-template-areas:
+        "header   header"
+        "target   allowed"
+        "controls allowed"
+        "footer   footer";
+      column-gap: 1.75rem;
+      align-items: start;
+    }
+    header   { grid-area: header; }
+    .target  { grid-area: target; margin-bottom: 1rem; }
+    .controls { grid-area: controls; margin-bottom: 0; }
+    .allowed { grid-area: allowed; }
+    footer   { grid-area: footer; }
+  }
+
   /* --- Mobile: keep the word + all allowed words on one screen --- */
   @media (max-width: 480px) {
     body { padding: 1rem 0.9rem; }
