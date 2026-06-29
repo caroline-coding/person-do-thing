@@ -175,7 +175,7 @@
   </section>
 
   <footer>
-    Press <kbd>Space</kbd> or <kbd>Enter</kbd> for a new word &nbsp;·&nbsp; <span id="count"></span> words in the bank
+    Press <kbd>Space</kbd> or <kbd>Enter</kbd> for a new word
   </footer>
 </main>
 
@@ -201,8 +201,8 @@
   const wordEl = document.getElementById("word");
   const newBtn = document.getElementById("newWord");
 
-  // Dedupe case-insensitively (keep first spelling) so the count is honest
-  // and the no-repeat shuffle can't surface the same target twice.
+  // Dedupe case-insensitively (keep first spelling) so the no-repeat
+  // shuffle can't surface the same target twice.
   const BANK = (() => {
     const seen = new Set(), out = [];
     for (const w of WORD_BANK) {
@@ -211,7 +211,6 @@
     }
     return out;
   })();
-  document.getElementById("count").textContent = BANK.length;
 
   // Avoid immediate repeats by shuffling through the bank
   let queue = [];
